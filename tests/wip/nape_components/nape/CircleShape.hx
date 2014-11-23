@@ -15,6 +15,8 @@ typedef PhysicsCircleShapeOptions =
 	@:optional var radius : Float;
 	
 	@:optional var offset : Vector;
+	
+	@:optional var rotation : Float;
 }
 
 /**
@@ -35,13 +37,15 @@ class CircleShape extends Component
 			this.options = {
 				name : "CircleShape",
 				radius : 10,
-				offset : new Vector(0,0)
+				offset : new Vector(0, 0),
+				rotation : 0
 			}
 		} else {
 			this.options = _options;
 			this.options.name = (this.options.name == null) ? "CircleShape" : this.options.name;
 			this.options.radius = (this.options.radius == null) ? 10 : this.options.radius;
 			this.options.offset = (this.options.offset == null) ? new Vector(0, 0) : this.options.offset;
+			this.options.rotation = (this.options.rotation == null) ? 0 : this.options.rotation;
 		}
 	}
 	
@@ -55,6 +59,7 @@ class CircleShape extends Component
 		}
 		
 		this.shape = new Circle(this.options.radius);
+		this.shape.rotate(this.options.rotation);
 		var offset = new Vec2(this.options.offset.x, this.options.offset.y);
 		this.shape.translate(offset);
 		offset.dispose();
