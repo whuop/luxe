@@ -63,8 +63,8 @@ class RigidBody extends Component
 			return;
 		}
 		
-		this.transform.pos.x = this.body.position.x;
-		this.transform.pos.y = this.body.position.y;
+		this.entity.transform.pos.x = this.body.position.x;
+		this.entity.transform.pos.y = this.body.position.y;
 	}
 	
 	public function destroyed() {
