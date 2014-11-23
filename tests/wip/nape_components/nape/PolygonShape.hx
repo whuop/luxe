@@ -2,10 +2,12 @@ package tests.wip.nape_components.nape;
 
 import luxe.Component;
 import luxe.options.ComponentOptions;
+import luxe.utils.JSON;
 import luxe.Vector;
 import nape.geom.Vec2;
 import nape.phys.Body;
 import nape.shape.Polygon;
+import sys.db.Object;
 
 typedef PhysicsPolygonShapeOptions = 
 {
@@ -46,20 +48,29 @@ class PolygonShape extends Component
 		
 	}
 	
-	public function from_json(json : String) {
+	public function from_json( _polygonData : Dynamic) {
+		if (_polygonData == null) throw "Null polygon data passed to from_json in PolygonShape";
 		
+		var polygonObject : Dynamic = JSON.parse(_polygonData);
+		trace(polygonObject);
+		
+		var verts = new Array<Vector>();
+		var vertsData : Array<Dynamic> = cast polygonObject.vertices;
+		
+		for ( vert in vertsData ) {
+			verts.push(new Vector(vert.x, vert.y));
+		}
+		
+		from_array(verts);
 	}
 	
-	public function from_array(verts : Array<Vector>) {
+	public function from_array( _verts : Array<Vector>) {
 		var rigidbody : RigidBody = cast this.entity.get("RigidBody");
 		
 			//	Make sure a rigidbody is attached to the same entity.
-		if (rigidbody == null) {
-			trace("PolygonShape must have a RigidBody attached to the same entity!");
-			return;
-		}
+		if (rigidbody == null) throw "PolygonShape requires a RigidBody to be attached to the entity";
 		
-		this.shape = new Polygon(vector_array_to_vec2_array(verts));
+		this.shape = new Polygon(vector_array_to_vec2_array(_verts));
 		var offset = new Vec2(this.options.offset.x, this.options.offset.y);
 		this.shape.translate(offset);
 		this.shape.rotate(this.options.rotation);
