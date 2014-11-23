@@ -48,10 +48,7 @@ class RectangleShape extends Component
 		var rigidbody : RigidBody = cast this.entity.get("RigidBody");
 		
 			//	Make sure a rigidbody is attached to the same entity.
-		if (rigidbody == null) {
-			trace("RectangleShape must have a RigidBody attached to the same entity!");
-			return;
-		}
+		if (rigidbody == null)"RectangleShape requires a RigidBody to be attached to the entity";
 		
 		this.shape = new Polygon(Polygon.box(this.options.size.x, this.options.size.y));
 		var offset = new Vec2(this.options.offset.x, this.options.offset.y);

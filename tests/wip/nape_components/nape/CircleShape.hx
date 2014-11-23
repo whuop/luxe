@@ -53,10 +53,7 @@ class CircleShape extends Component
 		var rigidbody : RigidBody = cast this.entity.get("RigidBody");
 		
 			//	Make sure a rigidbody is attached to the same entity.
-		if (rigidbody == null) {
-			trace("CircleShape must have a RigidBody attached to the same entity!");
-			return;
-		}
+		if (rigidbody == null) throw "CircleShape requires a RigidBody to be attached to the entity";
 		
 		this.shape = new Circle(this.options.radius);
 		this.shape.rotate(this.options.rotation);

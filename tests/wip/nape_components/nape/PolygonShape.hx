@@ -7,7 +7,6 @@ import luxe.Vector;
 import nape.geom.Vec2;
 import nape.phys.Body;
 import nape.shape.Polygon;
-import sys.db.Object;
 
 typedef PhysicsPolygonShapeOptions = 
 {
