@@ -142,7 +142,7 @@ import phoenix.Vector;
             //CIRCLE
                 if(_shape.isCircle()) {
                     var circle = _shape.castCircle;
-                    draw_circle( circle.body.position, circle.radius, _draw_color, _immediate );
+                    draw_circle( circle.worldCOM , circle.radius, _draw_color, _immediate );
                     geometry[geometry.length-1].transform.rotation.setFromEuler(new Vector(0,0,_shape.body.rotation));
                 } else {
             //POLYGON
