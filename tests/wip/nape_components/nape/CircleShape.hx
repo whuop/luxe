@@ -1,7 +1,6 @@
-package luxe.components.physics.nape;
+package tests.wip.nape_components.nape;
 
 import luxe.Component;
-import luxe.components.physics.nape.CircleShape.PhsyicsCircleShapeOptions;
 import luxe.Vector;
 import nape.geom.Vec2;
 import nape.phys.Body;
@@ -9,7 +8,7 @@ import nape.phys.BodyType;
 import nape.shape.Circle;
 import nape.space.Space;
 
-typedef PhsyicsCircleShapeOptions = 
+typedef PhysicsCircleShapeOptions = 
 {
 	@:optional var name : String;
 	
@@ -24,13 +23,12 @@ typedef PhsyicsCircleShapeOptions =
  */
 class CircleShape extends Component
 {
-		//	Body that this CircleShape is attached to
 	var body : Body;
 	var shape : Circle;
 
-	var options : PhsyicsCircleShapeOptions;
+	var options : PhysicsCircleShapeOptions;
 	
-	public function new(?_options : PhsyicsCircleShapeOptions) {
+	public function new(?_options : PhysicsCircleShapeOptions) {
 		super( { name : (_options.name == null) ? "CircleShape" : _options.name } );
 		
 		if (_options == null) {

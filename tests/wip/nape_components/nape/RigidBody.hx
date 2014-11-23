@@ -1,4 +1,4 @@
-package luxe.components.physics.nape;
+package tests.wip.nape_components.nape;
 
 import luxe.Component;
 import luxe.options.ComponentOptions;
