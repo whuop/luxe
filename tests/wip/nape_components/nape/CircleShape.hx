@@ -1,5 +1,6 @@
 package tests.wip.nape_components.nape;
 
+
 import luxe.Component;
 import luxe.Vector;
 import nape.geom.Vec2;
@@ -7,6 +8,7 @@ import nape.phys.Body;
 import nape.phys.BodyType;
 import nape.shape.Circle;
 import nape.space.Space;
+
 
 typedef PhysicsCircleShapeOptions = 
 {
@@ -52,7 +54,7 @@ class CircleShape extends Component
 	public override function init() {
 		var rigidbody : RigidBody = cast this.entity.get("RigidBody");
 		
-			//	Make sure a rigidbody is attached to the same entity.
+			//	Make sure a rigidbody is attached to the same entity. otherwise the shape can not attach itself to the nape body of the rigidbody.
 		if (rigidbody == null) throw "CircleShape requires a RigidBody to be attached to the entity";
 		
 		this.shape = new Circle(this.options.radius);

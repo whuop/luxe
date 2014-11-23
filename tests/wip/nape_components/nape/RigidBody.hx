@@ -1,11 +1,13 @@
 package tests.wip.nape_components.nape;
 
+
 import luxe.Component;
 import luxe.options.ComponentOptions;
 import nape.geom.Vec2;
 import nape.phys.Body;
 import nape.phys.BodyType;
 import nape.space.Space;
+
 
 typedef PhysicsBodyOptions = 
 {

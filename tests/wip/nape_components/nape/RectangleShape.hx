@@ -1,11 +1,13 @@
 package tests.wip.nape_components.nape;
 
+
 import luxe.Component;
 import luxe.options.ComponentOptions;
 import luxe.Vector;
 import nape.geom.Vec2;
 import nape.shape.Polygon;
 import nape.phys.Body;
+
 
 typedef PhysicsRectangleShapeOptions = 
 {
@@ -47,7 +49,7 @@ class RectangleShape extends Component
 	public override function init() {
 		var rigidbody : RigidBody = cast this.entity.get("RigidBody");
 		
-			//	Make sure a rigidbody is attached to the same entity.
+			//	Make sure a rigidbody is attached to the same entity. otherwise the shape can not attach itself to the nape body of the rigidbody.
 		if (rigidbody == null)"RectangleShape requires a RigidBody to be attached to the entity";
 		
 		this.shape = new Polygon(Polygon.box(this.options.size.x, this.options.size.y));

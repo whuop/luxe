@@ -1,5 +1,6 @@
 package tests.wip.nape_components.nape;
 
+
 import luxe.Component;
 import luxe.options.ComponentOptions;
 import luxe.utils.JSON;
@@ -7,6 +8,7 @@ import luxe.Vector;
 import nape.geom.Vec2;
 import nape.phys.Body;
 import nape.shape.Polygon;
+
 
 typedef PhysicsPolygonShapeOptions = 
 {
@@ -66,7 +68,7 @@ class PolygonShape extends Component
 	public function from_array( _verts : Array<Vector>) {
 		var rigidbody : RigidBody = cast this.entity.get("RigidBody");
 		
-			//	Make sure a rigidbody is attached to the same entity.
+			//	Make sure a rigidbody is attached to the same entity. otherwise the shape can not attach itself to the nape body of the rigidbody.
 		if (rigidbody == null) throw "PolygonShape requires a RigidBody to be attached to the entity";
 		
 		this.shape = new Polygon(vector_array_to_vec2_array(_verts));
