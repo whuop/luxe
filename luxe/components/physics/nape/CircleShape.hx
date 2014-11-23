@@ -14,6 +14,8 @@ typedef PhsyicsCircleShapeOptions =
 	@:optional var name : String;
 	
 	@:optional var radius : Float;
+	
+	@:optional var offset : Vector;
 }
 
 /**
@@ -24,6 +26,7 @@ class CircleShape extends Component
 {
 		//	Body that this CircleShape is attached to
 	var body : Body;
+	var shape : Circle;
 
 	var options : PhsyicsCircleShapeOptions;
 	
@@ -33,16 +36,18 @@ class CircleShape extends Component
 		if (_options == null) {
 			this.options = {
 				name : "CircleShape",
-				radius : 10
+				radius : 10,
+				offset : new Vector(0,0)
 			}
 		} else {
 			this.options = _options;
 			this.options.name = (this.options.name == null) ? "CircleShape" : this.options.name;
 			this.options.radius = (this.options.radius == null) ? 10 : this.options.radius;
+			this.options.offset = (this.options.offset == null) ? new Vector(0, 0) : this.options.offset;
 		}
 	}
 	
-	public override function onreset() {
+	public override function init() {
 		var rigidbody : RigidBody = cast this.entity.get("RigidBody");
 		
 			//	Make sure a rigidbody is attached to the same entity.
@@ -50,9 +55,17 @@ class CircleShape extends Component
 			trace("CircleShape must have a RigidBody attached to the same entity!");
 			return;
 		}
-			//	Create a circle shape and attach it to the body of the rigidbody.
-		rigidbody.body.shapes.add(new Circle(this.options.radius));
-		rigidbody.body.space = Luxe.physics.nape.space;
+		
+		this.shape = new Circle(this.options.radius);
+		var offset = new Vec2(this.options.offset.x, this.options.offset.y);
+		this.shape.translate(offset);
+		offset.dispose();
+		
+		rigidbody.body.shapes.add(this.shape);
+	}
+	
+	public override function onreset() {
+		
 	}
 	
 }

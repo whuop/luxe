@@ -40,19 +40,22 @@ class RigidBody extends Component
 			this.options.space = (this.options.space == null) ? Luxe.physics.nape.space : this.options.space;
 		}
 		
+		this.body = new Body(this.options.body_type);
+		
 	}
 	
 	override function init() {
-		var pos = new Vec2(this.entity.transform.pos.x, this.entity.transform.pos.y);
-		this.body = new Body(this.options.body_type, pos);
-		//this.body.space = this.options.space;
 		
-			//	Be sure to clean up.
-		pos.dispose();
 	} // init
 	
 	override function onreset() {
+		var pos = new Vec2(this.entity.transform.pos.x, this.entity.transform.pos.y);
 		
+		this.body.position = pos;
+		this.body.space = this.options.space;
+		
+			//	Be sure to clean up.
+		pos.dispose();
 	}
 	
 	override function update( dt: Float ) {
